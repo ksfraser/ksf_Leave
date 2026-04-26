@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitb18de2653ae81fcc0e4672bbdf2a47f0
+class ComposerStaticInitd73a17170baff322878f747b557bb6e4
 {
     public static $files = array (
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
@@ -19,8 +19,9 @@ class ComposerStaticInitb18de2653ae81fcc0e4672bbdf2a47f0
         'K' => 
         array (
             'Ksfraser\\ModulesDAO\\' => 20,
+            'Ksfraser\\Leave\\Tests\\' => 21,
+            'Ksfraser\\Leave\\' => 15,
             'Ksfraser\\Database\\' => 18,
-            'Ksf\\Leave\\' => 10,
         ),
         'D' => 
         array (
@@ -37,13 +38,17 @@ class ComposerStaticInitb18de2653ae81fcc0e4672bbdf2a47f0
         array (
             0 => __DIR__ . '/..' . '/ksfraser/ksf-modules-dao/src',
         ),
+        'Ksfraser\\Leave\\Tests\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/tests',
+        ),
+        'Ksfraser\\Leave\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
+        ),
         'Ksfraser\\Database\\' => 
         array (
             0 => __DIR__ . '/..' . '/ksfraser/database/src/Ksfraser/Database',
-        ),
-        'Ksf\\Leave\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/src',
         ),
         'DeepCopy\\' => 
         array (
@@ -1234,9 +1239,9 @@ class ComposerStaticInitb18de2653ae81fcc0e4672bbdf2a47f0
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitb18de2653ae81fcc0e4672bbdf2a47f0::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitb18de2653ae81fcc0e4672bbdf2a47f0::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitb18de2653ae81fcc0e4672bbdf2a47f0::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitd73a17170baff322878f747b557bb6e4::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitd73a17170baff322878f747b557bb6e4::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitd73a17170baff322878f747b557bb6e4::$classMap;
 
         }, null, ClassLoader::class);
     }

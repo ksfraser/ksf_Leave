@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Ksf\Leave\Service;
+namespace Ksfraser\Leave\Service;
 
-use Ksf\Leave\Entity\LeaveRequest;
-use Ksf\Leave\Entity\LeaveBalance;
-use Ksf\Leave\Entity\LeaveType;
+use Ksfraser\Leave\Entity\LeaveRequest;
+use Ksfraser\Leave\Entity\LeaveBalance;
+use Ksfraser\Leave\Entity\LeaveType;
 
 class LeaveService
 {

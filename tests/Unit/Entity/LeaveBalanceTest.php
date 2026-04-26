@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Ksf\Leave\Tests\Unit\Entity;
+namespace Ksfraser\Leave\Tests\Unit\Entity;
 
 use PHPUnit\Framework\TestCase;
-use Ksf\Leave\Entity\LeaveBalance;
+use Ksfraser\Leave\Entity\LeaveBalance;
 
 class LeaveBalanceTest extends TestCase
 {

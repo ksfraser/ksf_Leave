@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ksf\Leave\Entity;
+namespace Ksfraser\Leave\Entity;
 
 class LeaveType
 {

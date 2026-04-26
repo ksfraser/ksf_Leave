@@ -1,7 +1,7 @@
 {
     "name": "ksfraser/ksf_leave",
-    "description": "KSF Leave Management Module",
-    "type": "project",
+    "description": "KSF Leave Management Library",
+    "type": "library",
     "license": "GPL-3.0",
     "require": {
         "php": "^8.1",
@@ -13,7 +13,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Ksf\\Leave\\": "src/"
+            "Ksfraser\\Leave\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Ksfraser\\Leave\\Tests\\": "tests/"
         }
     },
     "minimum-stability": "dev",
