@@ -54,3 +54,41 @@ Leave request and approval system that integrates with Calendar.
 - Manager: approves/rejects
 - HR: can override
 - Escalation: after X days auto-escalate
+
+## Integration Dependencies
+
+### Provided To
+| Module | Data Provided |
+|--------|---------------|
+| ksf_Calendar | Approved leave events |
+| ksf_Timesheets | Leave hours for reporting |
+| ksf_HRM | Leave balance updates |
+| ksf_Workflow | Leave approval workflow |
+
+### Consumed From
+| Module | Data Consumed |
+|--------|---------------|
+| ksf_HRM | Employee data, manager relationships |
+| ksf_Workflow | Approval routing, escalations |
+| ksf_Calendar | Event display, conflict checking |
+
+### Reference Comparisons
+- OrangeHRM: Leave Management (request, approval, balance)
+- Odoo: Time Off (leave types, allocation, approval)
+- SuiteCRM: None (external integration needed)
+- vtiger: None (external integration needed)
+
+## Success Metrics
+- Leave requests processed within 48 hours
+- Zero double-booking of employees
+- 100% balance accuracy
+- SLA compliance > 95%
+
+## Timeline
+- Phase 1: Leave requests and basic approval
+- Phase 2: Balance tracking, accrual
+- Phase 3: Calendar integration, escalation
+- Phase 4: Advanced reporting, policy enforcement
+
+*Document Version: 1.1.0*
+*Last Updated: 2026-05-11*

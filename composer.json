@@ -13,18 +13,24 @@
     },
     "autoload": {
         "psr-4": {
-            "Ksfraser\\Leave\\": "src/"
+            "Ksfraser\\": "src/Ksfraser/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Ksfraser\\Leave\\Tests\\": "tests/"
+            "Ksfraser\\Tests\\": "tests/"
         }
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "repositories": [
-        {"type": "path", "url": "../Database"},
-        {"type": "path", "url": "../ksf_ModulesDAO"}
+        {
+            "type": "path",
+            "url": "../Database"
+        },
+        {
+            "type": "path",
+            "url": "../ksf_ModulesDAO"
+        }
     ]
 }
