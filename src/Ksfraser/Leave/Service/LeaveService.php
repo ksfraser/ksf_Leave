@@ -15,7 +15,6 @@ class LeaveService
         $errors = [];
         $warnings = [];
 
-        // Check balance
         if ($request->getDays() > $balance->getAvailable()) {
             if (!$leaveType->isNegativeAllowed()) {
                 $errors[] = 'Insufficient leave balance. Available: ' . $balance->getAvailable();
@@ -26,14 +25,12 @@ class LeaveService
             }
         }
 
-        // Check future dating
         $today = new \DateTime();
         $startDate = new \DateTime($request->getStartDate());
         if ($startDate < $today) {
             $errors[] = 'Start date cannot be in the past';
         }
 
-        // Check date range
         if ($request->getEndDate() < $request->getStartDate()) {
             $errors[] = 'End date must be after start date';
         }

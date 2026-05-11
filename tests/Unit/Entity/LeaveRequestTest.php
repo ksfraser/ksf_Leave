@@ -2,71 +2,118 @@
 
 declare(strict_types=1);
 
-namespace Ksfraser\Leave\Tests\Unit\Entity;
+namespace Ksfraser\Tests\Unit\Leave\Entity;
 
-use PHPUnit\Framework\TestCase;
 use Ksfraser\Leave\Entity\LeaveRequest;
+use PHPUnit\Framework\TestCase;
 
 class LeaveRequestTest extends TestCase
 {
-    public function testCanCreateLeaveRequest(): void
+    public function testDefaultValues(): void
     {
         $request = new LeaveRequest();
-        $this->assertInstanceOf(LeaveRequest::class, $request);
+
+        $this->assertNull($request->getId());
+        $this->assertSame(0, $request->getEmployeeId());
+        $this->assertSame(0, $request->getLeaveTypeId());
+        $this->assertSame('', $request->getStartDate());
+        $this->assertSame('', $request->getEndDate());
+        $this->assertSame(0.0, $request->getDays());
+        $this->assertSame('', $request->getReason());
+        $this->assertSame(LeaveRequest::STATUS_DRAFT, $request->getStatus());
+        $this->assertNull($request->getApproverId());
+        $this->assertNull($request->getApprovedDate());
+        $this->assertNull($request->getRejectionReason());
     }
 
-    public function testCanSetAndGetEmployeeId(): void
+    /**
+     * @covers Ksfraser\Leave\Entity\LeaveRequest::setEmployeeId
+     * @covers Ksfraser\Leave\Entity\LeaveRequest::getEmployeeId
+     */
+    public function testSetEmployeeId(): void
     {
         $request = new LeaveRequest();
-        $request->setEmployeeId(1);
-        $this->assertEquals(1, $request->getEmployeeId());
+        $result = $request->setEmployeeId(456);
+
+        $this->assertInstanceOf(LeaveRequest::class, $result);
+        $this->assertSame(456, $request->getEmployeeId());
     }
 
-    public function testCanSetAndGetLeaveType(): void
+    /**
+     * @covers Ksfraser\Leave\Entity\LeaveRequest::setStatus
+     * @covers Ksfraser\Leave\Entity\LeaveRequest::getStatus
+     */
+    public function testStatusConstants(): void
     {
-        $request = new LeaveRequest();
-        $request->setLeaveTypeId(5);
-        $this->assertEquals(5, $request->getLeaveTypeId());
+        $this->assertSame('draft', LeaveRequest::STATUS_DRAFT);
+        $this->assertSame('pending', LeaveRequest::STATUS_PENDING);
+        $this->assertSame('approved', LeaveRequest::STATUS_APPROVED);
+        $this->assertSame('rejected', LeaveRequest::STATUS_REJECTED);
+        $this->assertSame('cancelled', LeaveRequest::STATUS_CANCELLED);
     }
 
-    public function testCanSetStartAndEndDates(): void
+    /**
+     * @covers Ksfraser\Leave\Entity\LeaveRequest::setStartDate
+     * @covers Ksfraser\Leave\Entity\LeaveRequest::getStartDate
+     */
+    public function testSetStartDate(): void
     {
         $request = new LeaveRequest();
-        $request->setStartDate('2024-07-01');
-        $request->setEndDate('2024-07-05');
-        $this->assertEquals('2024-07-01', $request->getStartDate());
-        $this->assertEquals('2024-07-05', $request->getEndDate());
+        $result = $request->setStartDate('2026-06-01');
+
+        $this->assertInstanceOf(LeaveRequest::class, $result);
+        $this->assertSame('2026-06-01', $request->getStartDate());
     }
 
-    public function testCanCalculateDays(): void
+    /**
+     * @covers Ksfraser\Leave\Entity\LeaveRequest::setDays
+     * @covers Ksfraser\Leave\Entity\LeaveRequest::getDays
+     */
+    public function testSetDays(): void
     {
         $request = new LeaveRequest();
-        $request->setStartDate('2024-07-01');
-        $request->setEndDate('2024-07-05');
-        $this->assertEquals(5, $request->getDays());
+        $result = $request->setDays(5.0);
+
+        $this->assertInstanceOf(LeaveRequest::class, $result);
+        $this->assertSame(5.0, $request->getDays());
     }
 
-    public function testCanSetStatus(): void
+    /**
+     * @covers Ksfraser\Leave\Entity\LeaveRequest::setApproverId
+     * @covers Ksfraser\Leave\Entity\LeaveRequest::getApproverId
+     */
+    public function testSetApproverId(): void
     {
         $request = new LeaveRequest();
-        $request->setStatus(LeaveRequest::STATUS_PENDING);
-        $this->assertEquals(LeaveRequest::STATUS_PENDING, $request->getStatus());
+        $result = $request->setApproverId(789);
+
+        $this->assertInstanceOf(LeaveRequest::class, $result);
+        $this->assertSame(789, $request->getApproverId());
     }
 
-    public function testCanCheckIfApproved(): void
+    /**
+     * @covers Ksfraser\Leave\Entity\LeaveRequest::setApprovedDate
+     * @covers Ksfraser\Leave\Entity\LeaveRequest::getApprovedDate
+     */
+    public function testSetApprovedDate(): void
     {
         $request = new LeaveRequest();
-        $request->setStatus(LeaveRequest::STATUS_APPROVED);
-        $this->assertTrue($request->isApproved());
-        
-        $request->setStatus(LeaveRequest::STATUS_REJECTED);
-        $this->assertFalse($request->isApproved());
+        $result = $request->setApprovedDate('2026-05-15');
+
+        $this->assertInstanceOf(LeaveRequest::class, $result);
+        $this->assertSame('2026-05-15', $request->getApprovedDate());
     }
 
-    public function testCanCheckIfPending(): void
+    /**
+     * @covers Ksfraser\Leave\Entity\LeaveRequest::setRejectionReason
+     * @covers Ksfraser\Leave\Entity\LeaveRequest::getRejectionReason
+     */
+    public function testSetRejectionReason(): void
     {
         $request = new LeaveRequest();
-        $request->setStatus(LeaveRequest::STATUS_PENDING);
-        $this->assertTrue($request->isPending());
+        $result = $request->setRejectionReason('Insufficient coverage');
+
+        $this->assertInstanceOf(LeaveRequest::class, $result);
+        $this->assertSame('Insufficient coverage', $request->getRejectionReason());
     }
 }

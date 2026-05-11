@@ -2,75 +2,134 @@
 
 declare(strict_types=1);
 
-namespace Ksfraser\Leave\Tests\Unit\Entity;
+namespace Ksfraser\Tests\Unit\Leave\Entity;
 
-use PHPUnit\Framework\TestCase;
 use Ksfraser\Leave\Entity\LeaveType;
+use PHPUnit\Framework\TestCase;
 
 class LeaveTypeTest extends TestCase
 {
-    public function testCanCreateLeaveType(): void
+    public function testDefaultValues(): void
     {
-        $type = new LeaveType();
-        $this->assertInstanceOf(LeaveType::class, $type);
+        $leaveType = new LeaveType();
+
+        $this->assertNull($leaveType->getId());
+        $this->assertSame('', $leaveType->getName());
+        $this->assertSame('', $leaveType->getCode());
+        $this->assertSame('', $leaveType->getDescription());
+        $this->assertSame(0.0, $leaveType->getAnnualAllowance());
+        $this->assertTrue($leaveType->accrues());
+        $this->assertSame(0.0, $leaveType->getAccrualRate());
+        $this->assertTrue($leaveType->requiresApproval());
+        $this->assertFalse($leaveType->isNegativeAllowed());
+        $this->assertSame(0.0, $leaveType->getMaxNegativeBalance());
+        $this->assertSame('', $leaveType->getGlCodeExpense());
+        $this->assertSame('', $leaveType->getGlCodeAccrual());
+        $this->assertTrue($leaveType->isPaid());
+        $this->assertTrue($leaveType->isActive());
     }
 
-    public function testCanSetAndGetId(): void
+    /**
+     * @covers Ksfraser\Leave\Entity\LeaveType::setId
+     * @covers Ksfraser\Leave\Entity\LeaveType::getId
+     */
+    public function testSetId(): void
     {
-        $type = new LeaveType();
-        $type->setId(1);
-        $this->assertEquals(1, $type->getId());
+        $leaveType = new LeaveType();
+        $result = $leaveType->setId(123);
+
+        $this->assertInstanceOf(LeaveType::class, $result);
+        $this->assertSame(123, $leaveType->getId());
     }
 
-    public function testCanSetAndGetName(): void
+    /**
+     * @covers Ksfraser\Leave\Entity\LeaveType::setName
+     * @covers Ksfraser\Leave\Entity\LeaveType::getName
+     */
+    public function testSetName(): void
     {
-        $type = new LeaveType();
-        $type->setName('Vacation');
-        $this->assertEquals('Vacation', $type->getName());
+        $leaveType = new LeaveType();
+        $result = $leaveType->setName('Annual Leave');
+
+        $this->assertInstanceOf(LeaveType::class, $result);
+        $this->assertSame('Annual Leave', $leaveType->getName());
     }
 
-    public function testCanSetAndGetCode(): void
+    /**
+     * @covers Ksfraser\Leave\Entity\LeaveType::setCode
+     * @covers Ksfraser\Leave\Entity\LeaveType::getCode
+     */
+    public function testSetCode(): void
     {
-        $type = new LeaveType();
-        $type->setCode('VAC');
-        $this->assertEquals('VAC', $type->getCode());
+        $leaveType = new LeaveType();
+        $result = $leaveType->setCode('AL');
+
+        $this->assertInstanceOf(LeaveType::class, $result);
+        $this->assertSame('AL', $leaveType->getCode());
     }
 
-    public function testCanSetAnnualAllowance(): void
+    /**
+     * @covers Ksfraser\Leave\Entity\LeaveType::setAnnualAllowance
+     * @covers Ksfraser\Leave\Entity\LeaveType::getAnnualAllowance
+     */
+    public function testSetAnnualAllowance(): void
     {
-        $type = new LeaveType();
-        $type->setAnnualAllowance(15);
-        $this->assertEquals(15, $type->getAnnualAllowance());
+        $leaveType = new LeaveType();
+        $result = $leaveType->setAnnualAllowance(25.0);
+
+        $this->assertInstanceOf(LeaveType::class, $result);
+        $this->assertSame(25.0, $leaveType->getAnnualAllowance());
     }
 
-    public function testCanCheckIfAccrues(): void
+    /**
+     * @covers Ksfraser\Leave\Entity\LeaveType::setAccrues
+     * @covers Ksfraser\Leave\Entity\LeaveType::accrues
+     */
+    public function testSetAccrues(): void
     {
-        $type = new LeaveType();
-        $type->setAccrues(true);
-        $this->assertTrue($type->accrues());
+        $leaveType = new LeaveType();
+        $result = $leaveType->setAccrues(false);
+
+        $this->assertInstanceOf(LeaveType::class, $result);
+        $this->assertFalse($leaveType->accrues());
     }
 
-    public function testCanCheckIfRequiresApproval(): void
+    /**
+     * @covers Ksfraser\Leave\Entity\LeaveType::setNegativeAllowed
+     * @covers Ksfraser\Leave\Entity\LeaveType::isNegativeAllowed
+     */
+    public function testSetNegativeAllowed(): void
     {
-        $type = new LeaveType();
-        $type->setRequiresApproval(true);
-        $this->assertTrue($type->requiresApproval());
+        $leaveType = new LeaveType();
+        $result = $leaveType->setNegativeAllowed(true);
+
+        $this->assertInstanceOf(LeaveType::class, $result);
+        $this->assertTrue($leaveType->isNegativeAllowed());
     }
 
-    public function testCanSetAndGetAccrualRate(): void
+    /**
+     * @covers Ksfraser\Leave\Entity\LeaveType::setMaxNegativeBalance
+     * @covers Ksfraser\Leave\Entity\LeaveType::getMaxNegativeBalance
+     */
+    public function testSetMaxNegativeBalance(): void
     {
-        $type = new LeaveType();
-        $type->setAccrualRate(1.25);
-        $this->assertEquals(1.25, $type->getAccrualRate());
+        $leaveType = new LeaveType();
+        $result = $leaveType->setMaxNegativeBalance(5.0);
+
+        $this->assertInstanceOf(LeaveType::class, $result);
+        $this->assertSame(5.0, $leaveType->getMaxNegativeBalance());
     }
 
-    public function testCanCheckIsActive(): void
+    /**
+     * @covers Ksfraser\Leave\Entity\LeaveType::setIsPaid
+     * @covers Ksfraser\Leave\Entity\LeaveType::isPaid
+     */
+    public function testSetIsPaid(): void
     {
-        $type = new LeaveType();
-        $type->setActive(true);
-        $this->assertTrue($type->isActive());
-        
-        $type->setActive(false);
-        $this->assertFalse($type->isActive());
+        $leaveType = new LeaveType();
+        $result = $leaveType->setIsPaid(false);
+
+        $this->assertInstanceOf(LeaveType::class, $result);
+        $this->assertFalse($leaveType->isPaid());
     }
 }

@@ -3,7 +3,7 @@
         'name' => 'ksfraser/ksf_leave',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'ee6212b92c2a7e705d87a53e9e9d66c058fd2180',
+        'reference' => 'db8ad5505913b0289e538e106f4c402e12230150',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -31,7 +31,7 @@
         'ksfraser/ksf_leave' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'ee6212b92c2a7e705d87a53e9e9d66c058fd2180',
+            'reference' => 'db8ad5505913b0289e538e106f4c402e12230150',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

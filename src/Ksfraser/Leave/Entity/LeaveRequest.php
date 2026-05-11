@@ -6,10 +6,11 @@ namespace Ksfraser\Leave\Entity;
 
 class LeaveRequest
 {
-    public const STATUS_PENDING = 'Pending';
-    public const STATUS_APPROVED = 'Approved';
-    public const STATUS_REJECTED = 'Rejected';
-    public const STATUS_CANCELLED = 'Cancelled';
+    public const STATUS_DRAFT = 'draft';
+    public const STATUS_PENDING = 'pending';
+    public const STATUS_APPROVED = 'approved';
+    public const STATUS_REJECTED = 'rejected';
+    public const STATUS_CANCELLED = 'cancelled';
 
     private ?int $id = null;
     private int $employeeId = 0;
@@ -18,12 +19,12 @@ class LeaveRequest
     private string $endDate = '';
     private float $days = 0;
     private string $reason = '';
-    private string $status = self::STATUS_PENDING;
+    private string $status = self::STATUS_DRAFT;
     private ?int $approverId = null;
     private ?string $approvedDate = null;
     private ?string $rejectionReason = null;
-    private ?int $replacesEmployeeId = null;
     private string $createdAt = '';
+    private string $updatedAt = '';
 
     public function getId(): ?int { return $this->id; }
     public function setId(?int $id): self { $this->id = $id; return $this; }
@@ -35,9 +36,7 @@ class LeaveRequest
     public function setStartDate(string $startDate): self { $this->startDate = $startDate; return $this; }
     public function getEndDate(): string { return $this->endDate; }
     public function setEndDate(string $endDate): self { $this->endDate = $endDate; return $this; }
-    public function getDays(): float { 
-        return $this->days > 0 ? $this->days : $this->calculateDays(); 
-    }
+    public function getDays(): float { return $this->days; }
     public function setDays(float $days): self { $this->days = $days; return $this; }
     public function getReason(): string { return $this->reason; }
     public function setReason(string $reason): self { $this->reason = $reason; return $this; }
@@ -49,23 +48,8 @@ class LeaveRequest
     public function setApprovedDate(?string $approvedDate): self { $this->approvedDate = $approvedDate; return $this; }
     public function getRejectionReason(): ?string { return $this->rejectionReason; }
     public function setRejectionReason(?string $rejectionReason): self { $this->rejectionReason = $rejectionReason; return $this; }
-    public function getReplacesEmployeeId(): ?int { return $this->replacesEmployeeId; }
-    public function setReplacesEmployeeId(?int $replacesEmployeeId): self { $this->replacesEmployeeId = $replacesEmployeeId; return $this; }
     public function getCreatedAt(): string { return $this->createdAt; }
     public function setCreatedAt(string $createdAt): self { $this->createdAt = $createdAt; return $this; }
-
-    public function isPending(): bool { return $this->status === self::STATUS_PENDING; }
-    public function isApproved(): bool { return $this->status === self::STATUS_APPROVED; }
-    public function isRejected(): bool { return $this->status === self::STATUS_REJECTED; }
-    public function isCancelled(): bool { return $this->status === self::STATUS_CANCELLED; }
-
-    public function calculateDays(): float
-    {
-        if (empty($this->startDate) || empty($this->endDate)) {
-            return 0;
-        }
-        $start = new \DateTime($this->startDate);
-        $end = new \DateTime($this->endDate);
-        return (float)($end->diff($start)->days + 1);
-    }
+    public function getUpdatedAt(): string { return $this->updatedAt; }
+    public function setUpdatedAt(string $updatedAt): self { $this->updatedAt = $updatedAt; return $this; }
 }

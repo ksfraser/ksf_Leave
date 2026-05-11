@@ -18,10 +18,10 @@ class ComposerStaticInitd73a17170baff322878f747b557bb6e4
         ),
         'K' => 
         array (
+            'Ksfraser\\Tests\\' => 15,
             'Ksfraser\\ModulesDAO\\' => 20,
-            'Ksfraser\\Leave\\Tests\\' => 21,
-            'Ksfraser\\Leave\\' => 15,
             'Ksfraser\\Database\\' => 18,
+            'Ksfraser\\' => 9,
         ),
         'D' => 
         array (
@@ -34,21 +34,21 @@ class ComposerStaticInitd73a17170baff322878f747b557bb6e4
         array (
             0 => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser',
         ),
+        'Ksfraser\\Tests\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/tests',
+        ),
         'Ksfraser\\ModulesDAO\\' => 
         array (
             0 => __DIR__ . '/..' . '/ksfraser/ksf-modules-dao/src',
         ),
-        'Ksfraser\\Leave\\Tests\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/tests',
-        ),
-        'Ksfraser\\Leave\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/src',
-        ),
         'Ksfraser\\Database\\' => 
         array (
             0 => __DIR__ . '/..' . '/ksfraser/database/src/Ksfraser/Database',
+        ),
+        'Ksfraser\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/Ksfraser',
         ),
         'DeepCopy\\' => 
         array (
