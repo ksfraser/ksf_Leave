@@ -151,5 +151,44 @@ ksf_Leave provides leave request management, approval workflows, and balance tra
 
 ---
 
-*Document Version: 1.1.0*
-*Last Updated: 2026-05-11*
+## 7. RBAC Integration
+
+### FR-LV-006: RBAC Integration
+**Requirement**: System shall enforce role-based access control via ksfraser/rbac.
+
+**Features**:
+- Register record types 'leave_request', 'leave_balance' with RBAC
+- Apply RBAC JOIN on all leave queries
+- PUBLIC projection: dates, leave type, status
+- FULL projection: reason, medical certificate, approver notes, comments
+
+### FR-LV-007: Entity Projections
+**Requirement**: System shall expose RBAC-aware projections for all leave entities.
+
+**Features**:
+- LeaveRequestDTO restricts to PUBLIC/FULL based on role
+- LeaveBalanceDTO limits balance detail to PUBLIC for payroll
+- Employee sees own requests at FULL; manager sees team at FULL
+- HR sees all at FULL
+
+### FR-LV-008: Soft Delete
+**Requirement**: System shall support soft deletion of leave requests.
+
+**Features**:
+- Cancelled requests set deleted=1, deleted_by, deleted_at
+- Leave balance records never deleted (audit requirement)
+- Hard delete restricted to super-admin
+
+### FR-LV-009: Audit Trail
+**Requirement**: System shall audit all RBAC-sensitive leave operations.
+
+**Features**:
+- Log request status changes (submit, approve, reject, cancel)
+- Log balance adjustments
+- Log projection level access attempts
+- Audit trail viewable by HR and super-admin
+
+---
+
+*Document Version: 1.2.0*
+*Last Updated: 2026-05-24*
